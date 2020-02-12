@@ -11,6 +11,7 @@ shared_ptr<ComicManager> ComicManager::instance()
 
 ComicManager::ComicManager(QObject *parent):QObject(parent)
 {
+    _currentOpenBookIndex = -1;
 }
 
 ComicManager::~ComicManager()
@@ -42,7 +43,7 @@ bool ComicManager::loadDir(const QString &path)
         shared_ptr<ComicBook> book = shared_ptr<ComicBook>(new ComicBook);
         book->setName(fullDir.fileName());
 
-        if (!book->load(fullDir.path()))
+        if (!book->load(fullDir.filePath()))
         {
             continue;
         }
@@ -63,10 +64,16 @@ QString ComicManager::bookName(int index)
     return _books[index]->name();
 }
 
-bool ComicManager::loadBook(int index)
+bool ComicManager::openBook(int index)
 {
+    _currentOpenBookIndex = index;
     qDebug() << "Will Load Book" << index << endl;
     shared_ptr<ComicBook> book = _books.at(index);
 
     return true;
+}
+
+ComicBook *ComicManager::currentOpenBook()
+{
+    return _books[_currentOpenBookIndex].get();
 }

@@ -25,8 +25,20 @@ bool ComicBook::load(const QString &path)
     return true;
 }
 
+QString ComicBook::chapterName(int index)
+{
+    return QString::number(_chapters[index]->index());
+}
+
+int ComicBook::chapterCount()
+{
+    return _chapters.size();
+}
+
 bool ComicBook::parseChapter(const QString &path)
 {
+    qDebug() << "Parse this path:" << path << endl;
+
     QDir dir(path);
 
     dir.setFilter(QDir::Dirs);
@@ -38,7 +50,17 @@ bool ComicBook::parseChapter(const QString &path)
             continue;
         }
 
-        qDebug() << "FileName:" << fullDir.fileName().toInt() << endl;
+  //      qDebug() << "Chapter Name:" << fullDir.fileName().toInt() << endl;
+
+        shared_ptr<ComicChapter> chapter = shared_ptr<ComicChapter>(new ComicChapter);
+        chapter->setIndex(fullDir.fileName().toInt());
+
+        if (!chapter->loadChapter(fullDir.filePath()))
+        {
+            continue;
+        }
+
+        _chapters.insert(make_pair(chapter->index(),chapter));
     }
 
     return true;

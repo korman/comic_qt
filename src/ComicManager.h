@@ -23,7 +23,8 @@ public:
     Q_INVOKABLE bool loadDir(const QString& path);
     Q_INVOKABLE int bookCount();
     Q_INVOKABLE QString bookName(int index);
-    Q_INVOKABLE bool loadBook(int index);
+    Q_INVOKABLE bool openBook(int index);
+    Q_INVOKABLE ComicBook* currentOpenBook();
 
 protected:
     ComicManager(QObject* parent = nullptr);
@@ -36,6 +37,7 @@ protected:
     static shared_ptr<ComicManager> _instance;
 
     QVector<shared_ptr<ComicBook>> _books;
+    int _currentOpenBookIndex;
 };
 
 #endif

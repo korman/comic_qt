@@ -3,17 +3,38 @@ import QtQuick.Controls 2.5
 import Comic.Common 1.0
 
 Item {
+    id: bookView
     visible: true
-    width: 640
-    height: 480
-    x:0
-    y:0
+    anchors.fill: parent
 
-    Rectangle {
-        visible: true
-        width: 640
-        height: 480
+    StackView {
+        id:stackView
 
-        color: "#FF00FF"
+        anchors.fill: parent
+
+        ScrollView {
+            anchors.fill: parent
+
+            ListView {
+                id:listView
+
+                property int name: 10
+
+                width: parent.width
+                model: 0
+                delegate: ItemDelegate {
+                    text: ComicMgr.currentOpenBook().chapterName(index)
+                    width: parent.width
+                    onClicked: {
+                        listView.visible = false
+                        stackView.push("Book.qml")
+                    }
+                }
+
+                Component.onCompleted: {
+                    model = ComicMgr.currentOpenBook().chapterCount()
+                }
+            }
+        }
     }
 }

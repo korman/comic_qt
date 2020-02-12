@@ -35,21 +35,6 @@ ApplicationWindow {
 
         anchors.fill: parent
 
-        Component {
-              id: itemComponent
-
-              Item {
-                  anchors.fill: parent
-
-                  Rectangle {
-                      width:parent.width
-                      height:parent.height
-
-                      color: "#ff00ff"
-                  }
-              }
-          }
-
         ScrollView {
             anchors.fill: parent
 
@@ -63,7 +48,8 @@ ApplicationWindow {
                     width: parent.width
                     onClicked: {
                         listView.visible = false
-                        stackView.push(itemComponent)
+                        ComicMgr.openBook(index)
+                        stackView.push("Book.qml")
                     }
                 }
 
