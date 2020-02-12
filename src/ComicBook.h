@@ -6,7 +6,6 @@
 #define COMICBOOK_H
 
 #include <QObject>
-#include <map>
 #include <memory>
 
 #include "ComicChapter.h"
@@ -18,7 +17,7 @@ class ComicBook:public QObject
     Q_OBJECT
 
 public:
-    typedef map<int,shared_ptr<ComicChapter>> Chapters;
+    typedef QVector<shared_ptr<ComicChapter>> Chapters;
 
     ComicBook(QObject* parent = nullptr);
     ~ComicBook();

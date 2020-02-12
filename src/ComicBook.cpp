@@ -27,7 +27,7 @@ bool ComicBook::load(const QString &path)
 
 QString ComicBook::chapterName(int index)
 {
-    return QString::number(_chapters[index]->index());
+    return _chapters[index]->chapterName();
 }
 
 int ComicBook::chapterCount()
@@ -54,13 +54,14 @@ bool ComicBook::parseChapter(const QString &path)
 
         shared_ptr<ComicChapter> chapter = shared_ptr<ComicChapter>(new ComicChapter);
         chapter->setIndex(fullDir.fileName().toInt());
+        chapter->setChapterName(fullDir.fileName());
 
         if (!chapter->loadChapter(fullDir.filePath()))
         {
             continue;
         }
 
-        _chapters.insert(make_pair(chapter->index(),chapter));
+        _chapters.push_back(chapter);
     }
 
     return true;
