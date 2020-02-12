@@ -5,6 +5,7 @@
 ComicBook::ComicBook(QObject *parent):QObject(parent)
 {
     _name = "Unknow";
+    _currentChapterIndex = -1;
 }
 
 ComicBook::~ComicBook()
@@ -25,6 +26,15 @@ bool ComicBook::load(const QString &path)
     return true;
 }
 
+bool ComicBook::openChapter(int index)
+{
+    qDebug() << "Open Chapter:" << index << endl;
+
+    _currentChapterIndex = index;
+
+    return _chapters[index]->openChapter();
+}
+
 QString ComicBook::chapterName(int index)
 {
     return _chapters[index]->chapterName();
@@ -33,6 +43,21 @@ QString ComicBook::chapterName(int index)
 int ComicBook::chapterCount()
 {
     return _chapters.size();
+}
+
+ComicChapter *ComicBook::currentChapter()
+{
+    return _chapters[_currentChapterIndex].get();
+}
+
+shared_ptr<ComicChapter> ComicBook::currentChapterPtr()
+{
+    return _chapters[_currentChapterIndex];
+}
+
+void ComicBook::setMaxWidth(int max)
+{
+
 }
 
 bool ComicBook::parseChapter(const QString &path)

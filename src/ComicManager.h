@@ -25,6 +25,8 @@ public:
     Q_INVOKABLE QString bookName(int index);
     Q_INVOKABLE bool openBook(int index);
     Q_INVOKABLE ComicBook* currentOpenBook();
+    Q_INVOKABLE void setMaxWidth(int max);
+    Q_INVOKABLE int maxWidth() {return _maxWidth;}
 
 protected:
     ComicManager(QObject* parent = nullptr);
@@ -36,6 +38,7 @@ protected:
 
     static shared_ptr<ComicManager> _instance;
 
+    int _maxWidth;
     QVector<shared_ptr<ComicBook>> _books;
     int _currentOpenBookIndex;
 };

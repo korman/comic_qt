@@ -12,6 +12,7 @@ shared_ptr<ComicManager> ComicManager::instance()
 ComicManager::ComicManager(QObject *parent):QObject(parent)
 {
     _currentOpenBookIndex = -1;
+    _maxWidth = 0;
 }
 
 ComicManager::~ComicManager()
@@ -75,5 +76,17 @@ bool ComicManager::openBook(int index)
 
 ComicBook *ComicManager::currentOpenBook()
 {
+    qDebug() << "get current:" << _currentOpenBookIndex << endl;
+
     return _books[_currentOpenBookIndex].get();
+}
+
+void ComicManager::setMaxWidth(int max)
+{
+    _maxWidth = max;
+
+    for (auto v : _books)
+    {
+        v->setMaxWidth(max);
+    }
 }

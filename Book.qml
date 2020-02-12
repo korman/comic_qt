@@ -18,16 +18,17 @@ Item {
             ListView {
                 id:listView
 
-                property int name: 10
-
                 width: parent.width
                 model: 0
                 delegate: ItemDelegate {
+                    id:dele
                     text: ComicMgr.currentOpenBook().chapterName(index)
                     width: parent.width
+
                     onClicked: {
                         listView.visible = false
-                        stackView.push("Book.qml")
+                        ComicMgr.currentOpenBook().openChapter(index)
+                        stackView.push("Chapter.qml")
                     }
                 }
 

@@ -5,7 +5,7 @@ import Comic.Common 1.0
 ApplicationWindow {
     visible: true
     width: 640
-    height: 480
+    height: 960
     title: qsTr("Scroll")
 
     header: ToolBar {
@@ -55,6 +55,8 @@ ApplicationWindow {
 
                 Component.onCompleted: {
                     ComicMgr.loadDir("/Users/kakuhiroshi/Downloads/漫画")
+
+                    ComicMgr.setMaxWidth(parent.width)
 
                     model = ComicMgr.bookCount()
                 }
