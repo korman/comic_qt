@@ -29,6 +29,8 @@ public:
     void setChapterName(const QString& name) {_chapterName = name;}
     const QString& chapterName() {return _chapterName;}
 
+    void clearData();
+
     const QString& filePath(int index);
 
     void setPath(const QString& path) {_path = path;}

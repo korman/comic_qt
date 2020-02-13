@@ -50,8 +50,62 @@ ComicChapter *ComicBook::currentChapter()
     return _chapters[_currentChapterIndex].get();
 }
 
+bool ComicBook::nextPage()
+{
+    if (nullptr == nextChapterPtr())
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool ComicBook::prePage()
+{
+    if (nullptr == preChapterPtr())
+    {
+        return false;
+    }
+
+    return true;
+}
+
 shared_ptr<ComicChapter> ComicBook::currentChapterPtr()
 {
+    return _chapters[_currentChapterIndex];
+}
+
+shared_ptr<ComicChapter> ComicBook::nextChapterPtr()
+{
+    if (_chapters.size() <= _currentChapterIndex + 1)
+    {
+        qWarning() << "Out range page" << endl;
+        return nullptr;
+    }
+
+    _chapters[_currentChapterIndex]->clearData();
+
+    _currentChapterIndex++;
+
+    _chapters[_currentChapterIndex]->openChapter();
+
+    return _chapters[_currentChapterIndex];
+}
+
+shared_ptr<ComicChapter> ComicBook::preChapterPtr()
+{
+    if (0 > _currentChapterIndex - 1)
+    {
+        qWarning() << "Out range page" << endl;
+        return nullptr;
+    }
+
+    _chapters[_currentChapterIndex]->clearData();
+
+    _currentChapterIndex--;
+
+    _chapters[_currentChapterIndex]->openChapter();
+
     return _chapters[_currentChapterIndex];
 }
 

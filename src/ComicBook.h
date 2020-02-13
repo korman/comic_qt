@@ -28,8 +28,12 @@ public:
     Q_INVOKABLE QString chapterName(int index);
     Q_INVOKABLE int chapterCount();
     Q_INVOKABLE ComicChapter* currentChapter();
+    Q_INVOKABLE bool nextPage();
+    Q_INVOKABLE bool prePage();
 
     shared_ptr<ComicChapter> currentChapterPtr();
+    shared_ptr<ComicChapter> nextChapterPtr();
+    shared_ptr<ComicChapter> preChapterPtr();
 
     void setName(const QString& name) {_name = name;}
     void setPath(const QString& path) {_path = path;}

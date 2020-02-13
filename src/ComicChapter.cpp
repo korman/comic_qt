@@ -77,6 +77,11 @@ bool ComicChapter::openChapter()
     return true;
 }
 
+void ComicChapter::clearData()
+{
+    _base64datas.clear();
+}
+
 const QString &ComicChapter::filePath(int index)
 {
     return _filePaths[index];

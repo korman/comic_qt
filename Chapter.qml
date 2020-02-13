@@ -14,6 +14,7 @@ Item {
     }
 
     ScrollView {
+        id: scrollView
         anchors.fill: parent
 
         ListView {
@@ -49,9 +50,61 @@ Item {
                 }
             }
 
+            function nextPage() {
+                console.log("clicked next page")
+                model = 0
+
+                ComicMgr.currentOpenBook().nextPage()
+
+                model = ComicMgr.currentOpenBook().currentChapter().chapterCount()
+            }
+
+            function prePage() {
+                console.log("clicked pre page")
+                model = 0
+
+                ComicMgr.currentOpenBook().prePage()
+
+                model = ComicMgr.currentOpenBook().currentChapter().chapterCount()
+            }
+
             Component.onCompleted: {
                 model = ComicMgr.currentOpenBook().currentChapter().chapterCount()
                 footerToolbar.visible = true
+            }
+        }
+    }
+
+    ToolBar {
+        id: footerToolbar
+
+        contentHeight: toolButton.implicitHeight
+        width: parent.width
+        x:0
+        y:parent.height - toolButton.implicitHeight
+
+        Rectangle {
+            width: parent.width
+            height: parent.height
+            color: "#ffffff"
+        }
+
+        ToolButton {
+            id: btnPreChapter
+            text: "\u25C0"
+            font.pixelSize: Qt.application.font.pixelSize * 1.6
+            onClicked: {
+                listView.prePage()
+            }
+        }
+
+        ToolButton {
+            id: btnNextChapter
+            x: parent.width - btnPreChapter.width
+            text: "\u25B6"
+            font.pixelSize: Qt.application.font.pixelSize * 1.6
+            onClicked: {
+                listView.nextPage()
             }
         }
     }
