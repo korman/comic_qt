@@ -5,36 +5,37 @@ import Comic.Common 1.0
 Item {
     id: bookView
     visible: true
-    anchors.fill: parent
+    width: parent.width
+    height: parent.height
 
-    StackView {
-        id:stackView
+    Rectangle {
+        anchors.fill: parent
+        color: "#ffffff"
+    }
 
+    ScrollView {
         anchors.fill: parent
 
-        ScrollView {
-            anchors.fill: parent
+        ListView {
+            id:listView
 
-            ListView {
-                id:listView
-
+            width: parent.width
+            model: 0
+            delegate: ItemDelegate {
+                id:dele
+                text: ComicMgr.currentOpenBook().chapterName(index)
                 width: parent.width
-                model: 0
-                delegate: ItemDelegate {
-                    id:dele
-                    text: ComicMgr.currentOpenBook().chapterName(index)
-                    width: parent.width
 
-                    onClicked: {
-                        listView.visible = false
-                        ComicMgr.currentOpenBook().openChapter(index)
-                        stackView.push("Chapter.qml")
-                    }
-                }
+                onClicked: {
+                 //   listView.visible = false
 
-                Component.onCompleted: {
-                    model = ComicMgr.currentOpenBook().chapterCount()
+                    ComicMgr.currentOpenBook().openChapter(index)
+                    stackView.push("Chapter.qml")
                 }
+            }
+
+            Component.onCompleted: {
+                model = ComicMgr.currentOpenBook().chapterCount()
             }
         }
     }

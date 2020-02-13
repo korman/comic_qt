@@ -16,8 +16,6 @@ void ComicPainter::loadPage(int index)
     QByteArray data = chapter->dataSource(_currentIndex);
     QString name = chapter->filePath(_currentIndex);
 
-    qDebug() << "File:" << name << "Get Data: " << data.length() << endl;
-
     if (!_image.loadFromData(data))
     {
         qWarning() << "Load From Data Error!" << endl;
@@ -28,8 +26,6 @@ void ComicPainter::loadPage(int index)
     double scale = maxWidth / static_cast<double>(_image.width());
 
     _image = _image.scaled(_image.width() * scale,_image.height() * scale);
-
-    qDebug() << "setScale new w:" << _image.width() << "h:" << _image.height() << endl;
 }
 
 int ComicPainter::imageWidth()

@@ -76,8 +76,6 @@ bool ComicManager::openBook(int index)
 
 ComicBook *ComicManager::currentOpenBook()
 {
-    qDebug() << "get current:" << _currentOpenBookIndex << endl;
-
     return _books[_currentOpenBookIndex].get();
 }
 
