@@ -121,4 +121,8 @@ void ComicManager::requestFinished(QNetworkReply *reply)
     {
         qDebug() << "request protobufHttp NoError";
     }
+
+    QByteArray a = reply->readAll();
+
+    qDebug() << "Ready Data: " << a << endl;
 }

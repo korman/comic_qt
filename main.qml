@@ -79,7 +79,7 @@ ApplicationWindow {
 
                 Component.onCompleted: {
                     ComicMgr.loadDir("/Users/kakuhiroshi/Downloads/漫画")
-                    ComicMgr.remoteLoadDir("http://localhost:8081/rank_list")
+                    ComicMgr.remoteLoadDir("http://localhost:8081")
 
                     ComicMgr.setMaxWidth(parent.width)
 
