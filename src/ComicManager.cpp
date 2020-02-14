@@ -1,6 +1,8 @@
 #include "ComicManager.h"
 #include <QDir>
 #include <QDebug>
+#include <QNetworkRequest>
+#include <QEventLoop>
 
 shared_ptr<ComicManager> ComicManager::_instance = shared_ptr<ComicManager>(new ComicManager,ComicManager::destroy);
 
@@ -9,8 +11,24 @@ shared_ptr<ComicManager> ComicManager::instance()
     return _instance;
 }
 
+bool ComicManager::remoteLoadDir(const QString &url)
+{
+    QNetworkRequest request;
+    request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/json"));
+    request.setRawHeader("Content-Type","application/json");
+    request.setRawHeader("Accept","text/json,*/*;q=0.5");
+
+    request.setUrl(QUrl(url));
+
+    QNetworkReply* reply = _networkMgr->get(request);
+    QMetaObject::Connection connRet = QObject::connect(_networkMgr.get(), SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinished(QNetworkReply*)));
+
+    return true;
+}
+
 ComicManager::ComicManager(QObject *parent):QObject(parent)
 {
+    _networkMgr = shared_ptr<QNetworkAccessManager>(new QNetworkAccessManager(this));
     _currentOpenBookIndex = -1;
     _maxWidth = 0;
 }
@@ -86,5 +104,21 @@ void ComicManager::setMaxWidth(int max)
     for (auto v : _books)
     {
         v->setMaxWidth(max);
+    }
+}
+
+void ComicManager::requestFinished(QNetworkReply *reply)
+{
+    if (reply->error() != QNetworkReply::NoError)
+    {
+        qDebug()<<"request protobufHttp handle errors here";
+        QVariant statusCodeV = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+        //statusCodeV是HTTP服务器的相应码，reply->error()是Qt定义的错误码，可以参考QT的文档
+        qDebug( "request protobufHttp found error ....code: %d %d\n", statusCodeV.toInt(), (int)reply->error());
+        qDebug(qPrintable(reply->errorString()));
+    }
+    else
+    {
+        qDebug() << "request protobufHttp NoError";
     }
 }
