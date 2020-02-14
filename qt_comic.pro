@@ -17,7 +17,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/ComicBook.cpp \
+    src/ComicChapter.cpp \
     src/ComicManager.cpp \
+    src/ComicPainter.cpp \
     src/main.cpp
 
 RESOURCES += qml.qrc
@@ -38,4 +40,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     src/ComicBook.h \
-    src/ComicManager.h
+    src/ComicChapter.h \
+    src/ComicManager.h \
+    src/ComicPainter.h

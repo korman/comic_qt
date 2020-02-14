@@ -5,7 +5,7 @@ import Comic.Common 1.0
 ApplicationWindow {
     visible: true
     width: 640
-    height: 480
+    height: 960
     title: qsTr("Scroll")
 
     header: ToolBar {
@@ -16,39 +16,49 @@ ApplicationWindow {
             text: stackView.depth > 1 ? "\u25C0" : "\u2630"
             font.pixelSize: Qt.application.font.pixelSize * 1.6
             onClicked: {
-                if (stackView.depth > 1) {
+                if (stackView.depth > 1)
+                {
                     stackView.pop()
-                } else {
-                    drawer.open()
+                }
+                else
+                {
+                    stackView.clear()
+                }
+
+                if (stackView.depth <= 2)
+                {
+                    footerToolbar.visible = false
                 }
             }
         }
 
         Label {
-            text: stackView.currentItem.title
+            text: "hehe"
             anchors.centerIn: parent
         }
     }
+
+//    footer: ToolBar {
+//        id: footerToolbar
+//        contentHeight: toolButton.implicitHeight
+
+//        ToolButton {
+//            id: bottomButton
+//            text: stackView.depth > 1 ? "\u25C0" : "\u2630"
+//            font.pixelSize: Qt.application.font.pixelSize * 1.6
+//            onClicked: {
+//            }
+//        }
+
+//        Component.onCompleted: {
+//            footerToolbar.visible = false
+//        }
+//    }
 
     StackView {
         id:stackView
 
         anchors.fill: parent
-
-        Component {
-              id: itemComponent
-
-              Item {
-                  anchors.fill: parent
-
-                  Rectangle {
-                      width:parent.width
-                      height:parent.height
-
-                      color: "#ff00ff"
-                  }
-              }
-          }
 
         ScrollView {
             anchors.fill: parent
@@ -62,13 +72,15 @@ ApplicationWindow {
                     text: ComicMgr.bookName(index)
                     width: parent.width
                     onClicked: {
-                        listView.visible = false
-                        stackView.push(itemComponent)
+                        ComicMgr.openBook(index)
+                        stackView.push("Book.qml")
                     }
                 }
 
                 Component.onCompleted: {
                     ComicMgr.loadDir("/Users/kakuhiroshi/Downloads/漫画")
+
+                    ComicMgr.setMaxWidth(parent.width)
 
                     model = ComicMgr.bookCount()
                 }
