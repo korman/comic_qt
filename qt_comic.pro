@@ -20,6 +20,7 @@ SOURCES += \
     src/ComicChapter.cpp \
     src/ComicManager.cpp \
     src/ComicPainter.cpp \
+    src/RemoteBookListDelegate.cpp \
     src/comic.pb.cc \
     src/main.cpp
 
@@ -48,4 +49,5 @@ HEADERS += \
     src/ComicChapter.h \
     src/ComicManager.h \
     src/ComicPainter.h \
+    src/RemoteBookListDelegate.h \
     src/comic.pb.h

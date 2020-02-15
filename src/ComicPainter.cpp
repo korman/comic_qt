@@ -2,7 +2,7 @@
 #include "ComicManager.h"
 #include "ComicChapter.h"
 
-ComicPainter::ComicPainter(QQuickItem *parent)
+ComicPainter::ComicPainter(QQuickItem *parent):QQuickPaintedItem(parent)
 {
     _currentIndex = -1;
 }

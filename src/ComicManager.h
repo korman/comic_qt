@@ -6,6 +6,7 @@
 #define COMICMANAGER_H
 
 #include "ComicBook.h"
+#include "RemoteBookListDelegate.h"
 
 #include <QObject>
 #include <memory>
@@ -30,6 +31,7 @@ public:
     Q_INVOKABLE ComicBook* currentOpenBook();
     Q_INVOKABLE void setMaxWidth(int max);
     Q_INVOKABLE int maxWidth() {return _maxWidth;}
+    Q_INVOKABLE void setRemoteCallback(RemoteBookListDelegate* remote) {_remoteCallback = remote;}
 
 public slots:
     void requestFinished(QNetworkReply* reply);
@@ -48,6 +50,8 @@ protected:
     QVector<shared_ptr<ComicBook>> _books;
     shared_ptr<QNetworkAccessManager> _networkMgr;
     int _currentOpenBookIndex;
+
+    RemoteBookListDelegate* _remoteCallback;
 };
 
 #endif

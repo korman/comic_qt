@@ -14,12 +14,31 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
+extern PROTOBUF_INTERNAL_EXPORT_comic_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_PbBookInfo_comic_2eproto;
 namespace pb {
+class PbBookInfoDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<PbBookInfo> _instance;
+} _PbBookInfo_default_instance_;
 class PbBookListDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<PbBookList> _instance;
 } _PbBookList_default_instance_;
 }  // namespace pb
+static void InitDefaultsscc_info_PbBookInfo_comic_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::pb::_PbBookInfo_default_instance_;
+    new (ptr) ::pb::PbBookInfo();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::pb::PbBookInfo::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_PbBookInfo_comic_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_PbBookInfo_comic_2eproto}, {}};
+
 static void InitDefaultsscc_info_PbBookList_comic_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -31,50 +50,260 @@ static void InitDefaultsscc_info_PbBookList_comic_2eproto() {
   ::pb::PbBookList::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_PbBookList_comic_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_PbBookList_comic_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_PbBookList_comic_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_PbBookList_comic_2eproto}, {
+      &scc_info_PbBookInfo_comic_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_comic_2eproto[1];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_comic_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_comic_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_comic_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_comic_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::pb::PbBookInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::pb::PbBookInfo, name_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::pb::PbBookList, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::pb::PbBookList, name_),
+  PROTOBUF_FIELD_OFFSET(::pb::PbBookList, books_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::pb::PbBookList)},
+  { 0, -1, sizeof(::pb::PbBookInfo)},
+  { 6, -1, sizeof(::pb::PbBookList)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::pb::_PbBookInfo_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::pb::_PbBookList_default_instance_),
 };
 
 const char descriptor_table_protodef_comic_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\013comic.proto\022\002pb\"\032\n\nPbBookList\022\014\n\004name\030"
-  "\001 \001(\tb\006proto3"
+  "\n\013comic.proto\022\002pb\"\032\n\nPbBookInfo\022\014\n\004name\030"
+  "\001 \001(\t\"+\n\nPbBookList\022\035\n\005books\030\001 \003(\0132\016.pb."
+  "PbBookInfob\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_comic_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_comic_2eproto_sccs[1] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_comic_2eproto_sccs[2] = {
+  &scc_info_PbBookInfo_comic_2eproto.base,
   &scc_info_PbBookList_comic_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_comic_2eproto_once;
 static bool descriptor_table_comic_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_comic_2eproto = {
-  &descriptor_table_comic_2eproto_initialized, descriptor_table_protodef_comic_2eproto, "comic.proto", 53,
-  &descriptor_table_comic_2eproto_once, descriptor_table_comic_2eproto_sccs, descriptor_table_comic_2eproto_deps, 1, 0,
+  &descriptor_table_comic_2eproto_initialized, descriptor_table_protodef_comic_2eproto, "comic.proto", 98,
+  &descriptor_table_comic_2eproto_once, descriptor_table_comic_2eproto_sccs, descriptor_table_comic_2eproto_deps, 2, 0,
   schemas, file_default_instances, TableStruct_comic_2eproto::offsets,
-  file_level_metadata_comic_2eproto, 1, file_level_enum_descriptors_comic_2eproto, file_level_service_descriptors_comic_2eproto,
+  file_level_metadata_comic_2eproto, 2, file_level_enum_descriptors_comic_2eproto, file_level_service_descriptors_comic_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
 static bool dynamic_init_dummy_comic_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_comic_2eproto), true);
 namespace pb {
+
+// ===================================================================
+
+void PbBookInfo::InitAsDefaultInstance() {
+}
+class PbBookInfo::_Internal {
+ public:
+};
+
+PbBookInfo::PbBookInfo()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:pb.PbBookInfo)
+}
+PbBookInfo::PbBookInfo(const PbBookInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_name().empty()) {
+    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+  }
+  // @@protoc_insertion_point(copy_constructor:pb.PbBookInfo)
+}
+
+void PbBookInfo::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_PbBookInfo_comic_2eproto.base);
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+PbBookInfo::~PbBookInfo() {
+  // @@protoc_insertion_point(destructor:pb.PbBookInfo)
+  SharedDtor();
+}
+
+void PbBookInfo::SharedDtor() {
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void PbBookInfo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const PbBookInfo& PbBookInfo::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_PbBookInfo_comic_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void PbBookInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:pb.PbBookInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+const char* PbBookInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string name = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.PbBookInfo.name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* PbBookInfo::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:pb.PbBookInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (this->name().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "pb.PbBookInfo.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:pb.PbBookInfo)
+  return target;
+}
+
+size_t PbBookInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:pb.PbBookInfo)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (this->name().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void PbBookInfo::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:pb.PbBookInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  const PbBookInfo* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<PbBookInfo>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:pb.PbBookInfo)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:pb.PbBookInfo)
+    MergeFrom(*source);
+  }
+}
+
+void PbBookInfo::MergeFrom(const PbBookInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:pb.PbBookInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.name().size() > 0) {
+
+    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+  }
+}
+
+void PbBookInfo::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:pb.PbBookInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void PbBookInfo::CopyFrom(const PbBookInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:pb.PbBookInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PbBookInfo::IsInitialized() const {
+  return true;
+}
+
+void PbBookInfo::InternalSwap(PbBookInfo* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata PbBookInfo::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
 
 // ===================================================================
 
@@ -91,18 +320,14 @@ PbBookList::PbBookList()
 }
 PbBookList::PbBookList(const PbBookList& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
+      _internal_metadata_(nullptr),
+      books_(from.books_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_name().empty()) {
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
-  }
   // @@protoc_insertion_point(copy_constructor:pb.PbBookList)
 }
 
 void PbBookList::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_PbBookList_comic_2eproto.base);
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 PbBookList::~PbBookList() {
@@ -111,7 +336,6 @@ PbBookList::~PbBookList() {
 }
 
 void PbBookList::SharedDtor() {
-  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void PbBookList::SetCachedSize(int size) const {
@@ -129,7 +353,7 @@ void PbBookList::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  books_.Clear();
   _internal_metadata_.Clear();
 }
 
@@ -140,13 +364,16 @@ const char* PbBookList::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // string name = 1;
+      // repeated .pb.PbBookInfo books = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.PbBookList.name"));
-          CHK_(ptr);
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_books(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -175,14 +402,12 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string name = 1;
-  if (this->name().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "pb.PbBookList.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+  // repeated .pb.PbBookInfo books = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_books_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, this->_internal_books(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -201,11 +426,11 @@ size_t PbBookList::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string name = 1;
-  if (this->name().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+  // repeated .pb.PbBookInfo books = 1;
+  total_size += 1UL * this->_internal_books_size();
+  for (const auto& msg : this->books_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -239,10 +464,7 @@ void PbBookList::MergeFrom(const PbBookList& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.name().size() > 0) {
-
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
-  }
+  books_.MergeFrom(from.books_);
 }
 
 void PbBookList::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -266,8 +488,7 @@ bool PbBookList::IsInitialized() const {
 void PbBookList::InternalSwap(PbBookList* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  books_.InternalSwap(&other->books_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PbBookList::GetMetadata() const {
@@ -278,6 +499,9 @@ void PbBookList::InternalSwap(PbBookList* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace pb
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::pb::PbBookInfo* Arena::CreateMaybeMessage< ::pb::PbBookInfo >(Arena* arena) {
+  return Arena::CreateInternal< ::pb::PbBookInfo >(arena);
+}
 template<> PROTOBUF_NOINLINE ::pb::PbBookList* Arena::CreateMaybeMessage< ::pb::PbBookList >(Arena* arena) {
   return Arena::CreateInternal< ::pb::PbBookList >(arena);
 }

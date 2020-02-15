@@ -3,6 +3,13 @@
 #include <QDebug>
 #include <QNetworkRequest>
 #include <QEventLoop>
+#include <QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonObject>
+
+#include "comic.pb.h"
+
+using namespace pb;
 
 shared_ptr<ComicManager> ComicManager::_instance = shared_ptr<ComicManager>(new ComicManager,ComicManager::destroy);
 
@@ -31,6 +38,7 @@ ComicManager::ComicManager(QObject *parent):QObject(parent)
     _networkMgr = shared_ptr<QNetworkAccessManager>(new QNetworkAccessManager(this));
     _currentOpenBookIndex = -1;
     _maxWidth = 0;
+    _remoteCallback = nullptr;
 }
 
 ComicManager::~ComicManager()
@@ -125,4 +133,38 @@ void ComicManager::requestFinished(QNetworkReply *reply)
     QByteArray a = reply->readAll();
 
     qDebug() << "Ready Data: " << a << endl;
+
+    QJsonParseError jsonError;
+    QJsonDocument jsonDoc(QJsonDocument::fromJson(a, &jsonError));
+
+    if (QJsonParseError::NoError != jsonError.error)
+    {
+        qWarning() << "Parse Json Failed" << endl;
+        return;
+    }
+
+    QJsonObject rootObj = jsonDoc.object();
+
+    if (!rootObj.contains("pb_data"))
+    {
+        qWarning() << "Warning: message not contains pb_data" << endl;
+        return;
+    }
+
+    QString pbData = rootObj.value("pb_data").toString();
+    QByteArray array = QByteArray::fromBase64(pbData.toLatin1());
+
+    qDebug() << "Parse pb_data: " << pbData << endl;
+
+    PbBookList list;
+
+    if (!list.ParseFromArray(array.data(),array.size()))
+    {
+        qWarning() << "Parse Error" << endl;
+    }
+
+    for (int i = 0;i < list.books_size();i++)
+    {
+        qDebug() << "Name: " << QString::fromStdString(list.books(i).name()) << endl;
+    }
 }
