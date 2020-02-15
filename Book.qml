@@ -34,7 +34,16 @@ Item {
                 }
             }
 
+            RemoteDelegate {
+                id:delegateChapters
+
+                onRequestMessage: {
+                    listView.model = ComicMgr.currentOpenBook().chapterCount()
+                }
+            }
+
             Component.onCompleted: {
+                ComicMgr.setRemoteChapterListCallback(delegateChapters)
                 model = ComicMgr.currentOpenBook().chapterCount()
             }
         }

@@ -20,9 +20,13 @@ SOURCES += \
     src/ComicChapter.cpp \
     src/ComicManager.cpp \
     src/ComicPainter.cpp \
+    src/RemoteBookListDelegate.cpp \
+    src/comic.pb.cc \
     src/main.cpp
 
 RESOURCES += qml.qrc
+
+INCLUDEPATH += /usr/local/include
 
 TRANSLATIONS += \
     qt_comic_zh_CN.ts
@@ -33,6 +37,8 @@ QML_IMPORT_PATH =
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
 
+LIBS += -L"/usr/local/lib" -lprotobuf
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -42,4 +48,7 @@ HEADERS += \
     src/ComicBook.h \
     src/ComicChapter.h \
     src/ComicManager.h \
-    src/ComicPainter.h
+    src/ComicPainter.h \
+    src/MessageDefine.h \
+    src/RemoteBookListDelegate.h \
+    src/comic.pb.h
