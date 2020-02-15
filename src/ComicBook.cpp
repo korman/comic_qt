@@ -124,7 +124,7 @@ shared_ptr<ComicChapter> ComicBook::nextChapterPtr()
 
     _currentChapterIndex++;
 
-    _chapters[_currentChapterIndex]->openChapter();
+    openChapter(_currentChapterIndex);
 
     return _chapters[_currentChapterIndex];
 }
@@ -141,7 +141,7 @@ shared_ptr<ComicChapter> ComicBook::preChapterPtr()
 
     _currentChapterIndex--;
 
-    _chapters[_currentChapterIndex]->openChapter();
+    openChapter(_currentChapterIndex);
 
     return _chapters[_currentChapterIndex];
 }
