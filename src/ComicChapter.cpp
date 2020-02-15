@@ -1,6 +1,9 @@
 #include "ComicChapter.h"
 #include <QDir>
 #include <QDebug>
+#include "comic.pb.h"
+
+using namespace pb;
 
 ComicChapter::ComicChapter(QObject *parent):QObject(parent) {}
 
@@ -11,7 +14,7 @@ int ComicChapter::chapterCount()
 
 QByteArray ComicChapter::dataSource(int index)
 {
-    qDebug() << "Get Source : " << index << endl;
+    qDebug() << "DataLen:" << _base64datas.length() << "Get Source : " << index << endl;
 
     return _base64datas[index];
 }
@@ -72,6 +75,28 @@ bool ComicChapter::openChapter()
         _base64datas.push_back(bytes);
 
        // qDebug() << "getData: " << QString(bytes.toBase64()) << endl;
+    }
+
+    return true;
+}
+
+bool ComicChapter::processPageListEvent(QByteArray array)
+{
+    PbPageList list;
+
+    if (!list.ParseFromArray(array.data(),array.size()))
+    {
+        qWarning() << "Parse Error" << endl;
+        return false;
+    }
+
+    for (int i = 0;i < list.pages_size();i++)
+    {
+        QString dataString = list.pages(i).data().c_str();
+
+        QByteArray base64Data = QByteArray::fromBase64(dataString.toLatin1());
+
+        _base64datas.push_back(base64Data);
     }
 
     return true;

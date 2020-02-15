@@ -7,6 +7,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include "comic.pb.h"
+#include "ComicManager.h"
+#include "MessageDefine.h"
 
 using namespace pb;
 
@@ -45,6 +47,27 @@ bool ComicBook::openChapter(int index)
     qDebug() << "Open Chapter:" << index << endl;
 
     _currentChapterIndex = index;
+
+    shared_ptr<QNetworkAccessManager> mgr = ComicManager::instance()->networkManager();
+
+    if (nullptr == mgr)
+    {
+        return false;
+    }
+
+    QNetworkRequest request;
+    request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/json"));
+    request.setRawHeader("Content-Type","application/json");
+    request.setRawHeader("Accept","text/json,*/*;q=0.5");
+
+    QString url = ComicManager::instance()->baseUrl() + "pagelist";
+    url += "?msgId=" + QString::number(MSG_PAGELIST);
+    url += "&book_id=" + QString::number(_id);
+    url += "&chapter_id=" + QString::number(index);
+
+    request.setUrl(QUrl(url));
+
+    mgr->get(request);
 
     return _chapters[index]->openChapter();
 }
@@ -128,7 +151,7 @@ void ComicBook::setMaxWidth(int max)
 
 }
 
-bool ComicBook::processBookListEvent(QByteArray array)
+bool ComicBook::processChapterListEvent(QByteArray array)
 {
     PbChapterList list;
 
@@ -140,8 +163,6 @@ bool ComicBook::processBookListEvent(QByteArray array)
 
     for (int i = 0;i < list.chapters_size();i++)
     {
-        qDebug() << "Name: " << QString::fromStdString(list.chapters(i).name()) << endl;
-
         shared_ptr<ComicChapter> chapter = shared_ptr<ComicChapter>(new ComicChapter);
         chapter->setIndex(i);
         chapter->setChapterName(QString::fromStdString(list.chapters(i).name()));
@@ -155,6 +176,11 @@ bool ComicBook::processBookListEvent(QByteArray array)
     }
 
     return true;
+}
+
+bool ComicBook::processPageListEvent(QByteArray array)
+{
+    return _chapters[_currentChapterIndex]->processPageListEvent(array);
 }
 
 bool ComicBook::parseChapter(const QString &path)

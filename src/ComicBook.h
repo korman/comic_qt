@@ -35,7 +35,8 @@ public:
     Q_INVOKABLE bool nextPage();
     Q_INVOKABLE bool prePage();
 
-    bool processBookListEvent(QByteArray array);
+    bool processChapterListEvent(QByteArray array);
+    bool processPageListEvent(QByteArray array);
 
     shared_ptr<ComicChapter> currentChapterPtr();
     shared_ptr<ComicChapter> nextChapterPtr();

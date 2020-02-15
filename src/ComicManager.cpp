@@ -41,6 +41,8 @@ ComicManager::ComicManager(QObject *parent):QObject(parent)
     _currentOpenBookIndex = -1;
     _maxWidth = 0;
     _remoteBookListCallback = nullptr;
+    _remotePageListCallback = nullptr;
+    _remoteChapterListCallback = nullptr;
 }
 
 ComicManager::~ComicManager()
@@ -85,7 +87,7 @@ bool ComicManager::processChapterList(QByteArray bytes)
 {
     shared_ptr<ComicBook> book = _books[_currentOpenBookIndex];
 
-    if (!book->processBookListEvent(bytes))
+    if (!book->processChapterListEvent(bytes))
     {
         return false;
     }
@@ -93,6 +95,23 @@ bool ComicManager::processChapterList(QByteArray bytes)
     if (_remoteChapterListCallback)
     {
         emit _remoteChapterListCallback->requestMessage();
+    }
+
+    return true;
+}
+
+bool ComicManager::processPageList(QByteArray bytes)
+{
+    shared_ptr<ComicBook> book = _books[_currentOpenBookIndex];
+
+    if (!book->processPageListEvent(bytes))
+    {
+        return false;
+    }
+
+    if (_remotePageListCallback)
+    {
+        emit _remotePageListCallback->requestMessage();
     }
 
     return true;
@@ -208,8 +227,6 @@ void ComicManager::remoteMessageProcess(QNetworkReply *reply)
     QString pbData = rootObj.value("pb_data").toString();
     QByteArray array = QByteArray::fromBase64(pbData.toLatin1());
 
-    qDebug() << "msgId:" << msgId << "Parse pb_data: " << pbData << endl;
-
     switch (msgId)
     {
     case MSG_BOOKLIST:
@@ -226,6 +243,14 @@ void ComicManager::remoteMessageProcess(QNetworkReply *reply)
         if (!processChapterList(array))
         {
             qWarning() << "Process Chapter List Failed!" << endl;
+        }
+    }
+        break;
+    case MSG_PAGELIST:
+    {
+        if (!processPageList(array))
+        {
+            qWarning() << "Process Page List Failed!" << endl;
         }
     }
         break;

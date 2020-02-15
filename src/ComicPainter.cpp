@@ -14,12 +14,15 @@ void ComicPainter::loadPage(int index)
     shared_ptr<ComicChapter> chapter = ComicManager::instance()->currentOpenBook()->currentChapterPtr();
 
     QByteArray data = chapter->dataSource(_currentIndex);
-    QString name = chapter->filePath(_currentIndex);
+
+    qDebug() << "Read data:" << data.length() << endl;
 
     if (!_image.loadFromData(data))
     {
         qWarning() << "Load From Data Error!" << endl;
     }
+
+    qDebug() << "image size w:" << _image.width() << "h:" << _image.height() << endl;
 
     double maxWidth = static_cast<double>(ComicManager::instance()->maxWidth());
 
