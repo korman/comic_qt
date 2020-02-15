@@ -13,6 +13,9 @@ class RemoteBookListDelegate : public QObject
 public:
     RemoteBookListDelegate(QObject* parent = nullptr);
     virtual ~RemoteBookListDelegate();
+
+signals:
+    void remoteBookListLoaded();
 };
 
 #endif

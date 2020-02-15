@@ -18,17 +18,17 @@ shared_ptr<ComicManager> ComicManager::instance()
     return _instance;
 }
 
-bool ComicManager::remoteLoadDir(const QString &url)
+bool ComicManager::remoteLoadDir()
 {
     QNetworkRequest request;
     request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/json"));
     request.setRawHeader("Content-Type","application/json");
     request.setRawHeader("Accept","text/json,*/*;q=0.5");
 
-    request.setUrl(QUrl(url));
+    request.setUrl(QUrl(_url + "booklist"));
 
     QNetworkReply* reply = _networkMgr->get(request);
-    QMetaObject::Connection connRet = QObject::connect(_networkMgr.get(), SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinished(QNetworkReply*)));
+    QMetaObject::Connection connRet = QObject::connect(_networkMgr.get(), SIGNAL(finished(QNetworkReply*)), this, SLOT(bookListRequestFinished(QNetworkReply*)));
 
     return true;
 }
@@ -97,7 +97,19 @@ bool ComicManager::openBook(int index)
     qDebug() << "Will Load Book" << index << endl;
     shared_ptr<ComicBook> book = _books.at(index);
 
-    return true;
+    QNetworkRequest request;
+    request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/json"));
+    request.setRawHeader("Content-Type","application/json");
+    request.setRawHeader("Accept","text/json,*/*;q=0.5");
+
+    request.setUrl(QUrl(_url + "chapterlist"));
+
+    QNetworkReply* reply = _networkMgr->get(request);
+    QMetaObject::Connection connRet = QObject::connect(_networkMgr.get(), SIGNAL(finished(QNetworkReply*)), this, SLOT(bookListRequestFinished(QNetworkReply*)));
+
+
+
+    return book->loadRemoteBookInfo();
 }
 
 ComicBook *ComicManager::currentOpenBook()
@@ -115,7 +127,7 @@ void ComicManager::setMaxWidth(int max)
     }
 }
 
-void ComicManager::requestFinished(QNetworkReply *reply)
+void ComicManager::bookListRequestFinished(QNetworkReply *reply)
 {
     if (reply->error() != QNetworkReply::NoError)
     {
@@ -166,5 +178,20 @@ void ComicManager::requestFinished(QNetworkReply *reply)
     for (int i = 0;i < list.books_size();i++)
     {
         qDebug() << "Name: " << QString::fromStdString(list.books(i).name()) << endl;
+
+        shared_ptr<ComicBook> book = shared_ptr<ComicBook>(new ComicBook);
+        book->setName(QString::fromStdString(list.books(i).name()));
+
+//        if (!book->load(fullDir.filePath()))
+//        {
+//            continue;
+//        }
+
+        _books.push_back(book);
+    }
+
+    if (_remoteCallback)
+    {
+        emit _remoteCallback->remoteBookListLoaded();
     }
 }

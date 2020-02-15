@@ -23,18 +23,19 @@ class ComicManager:public QObject
 public:
     static shared_ptr<ComicManager> instance();
 
-    Q_INVOKABLE bool remoteLoadDir(const QString& url);
+    Q_INVOKABLE bool remoteLoadDir();
     Q_INVOKABLE bool loadDir(const QString& path);
     Q_INVOKABLE int bookCount();
     Q_INVOKABLE QString bookName(int index);
     Q_INVOKABLE bool openBook(int index);
     Q_INVOKABLE ComicBook* currentOpenBook();
     Q_INVOKABLE void setMaxWidth(int max);
+    Q_INVOKABLE void setBaseUrl(const QString& url) {_url = url;}
     Q_INVOKABLE int maxWidth() {return _maxWidth;}
     Q_INVOKABLE void setRemoteCallback(RemoteBookListDelegate* remote) {_remoteCallback = remote;}
 
 public slots:
-    void requestFinished(QNetworkReply* reply);
+    void bookListRequestFinished(QNetworkReply* reply);
 
 protected:
     ComicManager(QObject* parent = nullptr);
@@ -52,6 +53,8 @@ protected:
     int _currentOpenBookIndex;
 
     RemoteBookListDelegate* _remoteCallback;
+
+    QString _url;
 };
 
 #endif

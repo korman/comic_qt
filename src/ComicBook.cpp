@@ -1,11 +1,17 @@
 #include "ComicBook.h"
 #include <QDir>
 #include <QDebug>
+#include <QNetworkRequest>
+#include <QEventLoop>
+#include <QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 ComicBook::ComicBook(QObject *parent):QObject(parent)
 {
     _name = "Unknow";
     _currentChapterIndex = -1;
+    _remoteCallback = nullptr;
 }
 
 ComicBook::~ComicBook()
@@ -23,6 +29,11 @@ bool ComicBook::load(const QString &path)
         return false;
     }
 
+    return true;
+}
+
+bool ComicBook::loadRemoteBookInfo()
+{
     return true;
 }
 
@@ -110,6 +121,11 @@ shared_ptr<ComicChapter> ComicBook::preChapterPtr()
 }
 
 void ComicBook::setMaxWidth(int max)
+{
+
+}
+
+void ComicBook::chapterListRequestFinished(QNetworkReply *reply)
 {
 
 }

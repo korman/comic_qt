@@ -79,16 +79,25 @@ ApplicationWindow {
 
                 RemoteBookListDelegate {
                     id:delegateBooks
+
+                    onRemoteBookListLoaded: {
+                        console.log("Get Signal")
+
+                        listView.model = ComicMgr.bookCount()
+
+                        console.log("bookCount:",listView.model)
+                    }
                 }
 
                 Component.onCompleted: {
                     ComicMgr.setRemoteCallback(delegateBooks)
-                    ComicMgr.loadDir("/Users/kakuhiroshi/Downloads/漫画")
-                    ComicMgr.remoteLoadDir("http://localhost:8081/booklist")
+               //     ComicMgr.loadDir("/Users/kakuhiroshi/Downloads/漫画")
+                    ComicMgr.setBaseUrl("http://localhost:8081/")
+                    ComicMgr.remoteLoadDir()
 
                     ComicMgr.setMaxWidth(parent.width)
 
-                    model = ComicMgr.bookCount()
+                    model = 0
                 }
             }
         }
