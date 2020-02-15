@@ -1,5 +1,5 @@
 #include "RemoteBookListDelegate.h"
 
 
-RemoteBookListDelegate::RemoteBookListDelegate(QObject *parent):QObject(parent) {}
-RemoteBookListDelegate::~RemoteBookListDelegate() {}
+RemoteDelegate::RemoteDelegate(QObject *parent):QObject(parent) {}
+RemoteDelegate::~RemoteDelegate() {}

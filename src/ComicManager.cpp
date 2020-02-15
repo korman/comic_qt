@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
+#include "MessageDefine.h"
 #include "comic.pb.h"
 
 using namespace pb;
@@ -25,10 +26,9 @@ bool ComicManager::remoteLoadDir()
     request.setRawHeader("Content-Type","application/json");
     request.setRawHeader("Accept","text/json,*/*;q=0.5");
 
-    request.setUrl(QUrl(_url + "booklist"));
+    request.setUrl(QUrl(_url + "booklist" + "?msgId=" + QString::number(MSG_BOOKLIST)));
 
-    QNetworkReply* reply = _networkMgr->get(request);
-    QMetaObject::Connection connRet = QObject::connect(_networkMgr.get(), SIGNAL(finished(QNetworkReply*)), this, SLOT(bookListRequestFinished(QNetworkReply*)));
+    _networkMgr->get(request);
 
     return true;
 }
@@ -36,9 +36,11 @@ bool ComicManager::remoteLoadDir()
 ComicManager::ComicManager(QObject *parent):QObject(parent)
 {
     _networkMgr = shared_ptr<QNetworkAccessManager>(new QNetworkAccessManager(this));
+    QMetaObject::Connection connRet = QObject::connect(_networkMgr.get(), SIGNAL(finished(QNetworkReply*)), this, SLOT(remoteMessageProcess(QNetworkReply*)));
+
     _currentOpenBookIndex = -1;
     _maxWidth = 0;
-    _remoteCallback = nullptr;
+    _remoteBookListCallback = nullptr;
 }
 
 ComicManager::~ComicManager()
@@ -48,6 +50,52 @@ ComicManager::~ComicManager()
 void ComicManager::destroy(ComicManager *mgr)
 {
 
+}
+
+bool ComicManager::processBookList(QByteArray bytes)
+{
+    PbBookList list;
+
+    if (!list.ParseFromArray(bytes.data(),bytes.size()))
+    {
+        qWarning() << "Parse Error" << endl;
+        return false;
+    }
+
+    for (int i = 0;i < list.books_size();i++)
+    {
+        qDebug() << "Name: " << QString::fromStdString(list.books(i).name()) << endl;
+
+        shared_ptr<ComicBook> book = shared_ptr<ComicBook>(new ComicBook);
+        book->setName(QString::fromStdString(list.books(i).name()));
+        book->setId(i);
+
+        _books.push_back(book);
+    }
+
+    if (_remoteBookListCallback)
+    {
+        emit _remoteBookListCallback->requestMessage();
+    }
+
+    return true;
+}
+
+bool ComicManager::processChapterList(QByteArray bytes)
+{
+    shared_ptr<ComicBook> book = _books[_currentOpenBookIndex];
+
+    if (!book->processBookListEvent(bytes))
+    {
+        return false;
+    }
+
+    if (_remoteChapterListCallback)
+    {
+        emit _remoteChapterListCallback->requestMessage();
+    }
+
+    return true;
 }
 
 bool ComicManager::loadDir(const QString &path)
@@ -64,8 +112,6 @@ bool ComicManager::loadDir(const QString &path)
         {
             continue;
         }
-
-        qDebug() << "FileName:" << fullDir.fileName() << endl;
 
         shared_ptr<ComicBook> book = shared_ptr<ComicBook>(new ComicBook);
         book->setName(fullDir.fileName());
@@ -102,12 +148,9 @@ bool ComicManager::openBook(int index)
     request.setRawHeader("Content-Type","application/json");
     request.setRawHeader("Accept","text/json,*/*;q=0.5");
 
-    request.setUrl(QUrl(_url + "chapterlist"));
+    request.setUrl(QUrl(_url + "chapterlist?msgId=" + QString::number(MSG_CHAPTERLIST) + "&id=" + QString::number(index)));
 
-    QNetworkReply* reply = _networkMgr->get(request);
-    QMetaObject::Connection connRet = QObject::connect(_networkMgr.get(), SIGNAL(finished(QNetworkReply*)), this, SLOT(bookListRequestFinished(QNetworkReply*)));
-
-
+    _networkMgr->get(request);
 
     return book->loadRemoteBookInfo();
 }
@@ -127,7 +170,7 @@ void ComicManager::setMaxWidth(int max)
     }
 }
 
-void ComicManager::bookListRequestFinished(QNetworkReply *reply)
+void ComicManager::remoteMessageProcess(QNetworkReply *reply)
 {
     if (reply->error() != QNetworkReply::NoError)
     {
@@ -143,8 +186,6 @@ void ComicManager::bookListRequestFinished(QNetworkReply *reply)
     }
 
     QByteArray a = reply->readAll();
-
-    qDebug() << "Ready Data: " << a << endl;
 
     QJsonParseError jsonError;
     QJsonDocument jsonDoc(QJsonDocument::fromJson(a, &jsonError));
@@ -163,35 +204,35 @@ void ComicManager::bookListRequestFinished(QNetworkReply *reply)
         return;
     }
 
+    int msgId = rootObj.value("msg_id").toInt();
     QString pbData = rootObj.value("pb_data").toString();
     QByteArray array = QByteArray::fromBase64(pbData.toLatin1());
 
-    qDebug() << "Parse pb_data: " << pbData << endl;
+    qDebug() << "msgId:" << msgId << "Parse pb_data: " << pbData << endl;
 
-    PbBookList list;
-
-    if (!list.ParseFromArray(array.data(),array.size()))
+    switch (msgId)
     {
-        qWarning() << "Parse Error" << endl;
+    case MSG_BOOKLIST:
+    {
+        if (!processBookList(array))
+        {
+            qWarning() << "Process Book List Failed!" << endl;
+            return;
+        }
     }
-
-    for (int i = 0;i < list.books_size();i++)
+        break;
+    case MSG_CHAPTERLIST:
     {
-        qDebug() << "Name: " << QString::fromStdString(list.books(i).name()) << endl;
-
-        shared_ptr<ComicBook> book = shared_ptr<ComicBook>(new ComicBook);
-        book->setName(QString::fromStdString(list.books(i).name()));
-
-//        if (!book->load(fullDir.filePath()))
-//        {
-//            continue;
-//        }
-
-        _books.push_back(book);
+        if (!processChapterList(array))
+        {
+            qWarning() << "Process Chapter List Failed!" << endl;
+        }
     }
-
-    if (_remoteCallback)
+        break;
+    default:
     {
-        emit _remoteCallback->remoteBookListLoaded();
+        qWarning() << "Can't process this msgId" << msgId << endl;
+        break;
+    }
     }
 }

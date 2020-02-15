@@ -7,15 +7,15 @@
 
 #include <QObject>
 
-class RemoteBookListDelegate : public QObject
+class RemoteDelegate : public QObject
 {
     Q_OBJECT
 public:
-    RemoteBookListDelegate(QObject* parent = nullptr);
-    virtual ~RemoteBookListDelegate();
+    RemoteDelegate(QObject* parent = nullptr);
+    virtual ~RemoteDelegate();
 
 signals:
-    void remoteBookListLoaded();
+    void requestMessage();
 };
 
 #endif

@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<ComicChapter>("Comic.Common",1,0,"ComicChapter");
     qmlRegisterType<ComicBook>("Comic.Common",1,0,"ComicBook");
     qmlRegisterType<ComicPainter>("Comic.Common",1,0,"ComicPainter");
-    qmlRegisterType<RemoteBookListDelegate>("Comic.Common",1,0,"RemoteBookListDelegate");
+    qmlRegisterType<RemoteDelegate>("Comic.Common",1,0,"RemoteDelegate");
 
     qmlRegisterSingletonType<ComicManager>("Comic.Common", 1, 0, "ComicMgr", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
         Q_UNUSED(engine)

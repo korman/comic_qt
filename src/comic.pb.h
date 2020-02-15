@@ -47,7 +47,7 @@ struct TableStruct_comic_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -61,10 +61,26 @@ extern PbBookInfoDefaultTypeInternal _PbBookInfo_default_instance_;
 class PbBookList;
 class PbBookListDefaultTypeInternal;
 extern PbBookListDefaultTypeInternal _PbBookList_default_instance_;
+class PbChapterInfo;
+class PbChapterInfoDefaultTypeInternal;
+extern PbChapterInfoDefaultTypeInternal _PbChapterInfo_default_instance_;
+class PbChapterList;
+class PbChapterListDefaultTypeInternal;
+extern PbChapterListDefaultTypeInternal _PbChapterList_default_instance_;
+class PbPageInfo;
+class PbPageInfoDefaultTypeInternal;
+extern PbPageInfoDefaultTypeInternal _PbPageInfo_default_instance_;
+class PbPageList;
+class PbPageListDefaultTypeInternal;
+extern PbPageListDefaultTypeInternal _PbPageList_default_instance_;
 }  // namespace pb
 PROTOBUF_NAMESPACE_OPEN
 template<> ::pb::PbBookInfo* Arena::CreateMaybeMessage<::pb::PbBookInfo>(Arena*);
 template<> ::pb::PbBookList* Arena::CreateMaybeMessage<::pb::PbBookList>(Arena*);
+template<> ::pb::PbChapterInfo* Arena::CreateMaybeMessage<::pb::PbChapterInfo>(Arena*);
+template<> ::pb::PbChapterList* Arena::CreateMaybeMessage<::pb::PbChapterList>(Arena*);
+template<> ::pb::PbPageInfo* Arena::CreateMaybeMessage<::pb::PbPageInfo>(Arena*);
+template<> ::pb::PbPageList* Arena::CreateMaybeMessage<::pb::PbPageList>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace pb {
 
@@ -340,6 +356,550 @@ class PbBookList :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_comic_2eproto;
 };
+// -------------------------------------------------------------------
+
+class PbChapterList :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:pb.PbChapterList) */ {
+ public:
+  PbChapterList();
+  virtual ~PbChapterList();
+
+  PbChapterList(const PbChapterList& from);
+  PbChapterList(PbChapterList&& from) noexcept
+    : PbChapterList() {
+    *this = ::std::move(from);
+  }
+
+  inline PbChapterList& operator=(const PbChapterList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PbChapterList& operator=(PbChapterList&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const PbChapterList& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PbChapterList* internal_default_instance() {
+    return reinterpret_cast<const PbChapterList*>(
+               &_PbChapterList_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(PbChapterList& a, PbChapterList& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PbChapterList* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PbChapterList* New() const final {
+    return CreateMaybeMessage<PbChapterList>(nullptr);
+  }
+
+  PbChapterList* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PbChapterList>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const PbChapterList& from);
+  void MergeFrom(const PbChapterList& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PbChapterList* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "pb.PbChapterList";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_comic_2eproto);
+    return ::descriptor_table_comic_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kChaptersFieldNumber = 1,
+  };
+  // repeated .pb.PbChapterInfo chapters = 1;
+  int chapters_size() const;
+  private:
+  int _internal_chapters_size() const;
+  public:
+  void clear_chapters();
+  ::pb::PbChapterInfo* mutable_chapters(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::PbChapterInfo >*
+      mutable_chapters();
+  private:
+  const ::pb::PbChapterInfo& _internal_chapters(int index) const;
+  ::pb::PbChapterInfo* _internal_add_chapters();
+  public:
+  const ::pb::PbChapterInfo& chapters(int index) const;
+  ::pb::PbChapterInfo* add_chapters();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::PbChapterInfo >&
+      chapters() const;
+
+  // @@protoc_insertion_point(class_scope:pb.PbChapterList)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::PbChapterInfo > chapters_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_comic_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PbChapterInfo :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:pb.PbChapterInfo) */ {
+ public:
+  PbChapterInfo();
+  virtual ~PbChapterInfo();
+
+  PbChapterInfo(const PbChapterInfo& from);
+  PbChapterInfo(PbChapterInfo&& from) noexcept
+    : PbChapterInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline PbChapterInfo& operator=(const PbChapterInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PbChapterInfo& operator=(PbChapterInfo&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const PbChapterInfo& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PbChapterInfo* internal_default_instance() {
+    return reinterpret_cast<const PbChapterInfo*>(
+               &_PbChapterInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(PbChapterInfo& a, PbChapterInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PbChapterInfo* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PbChapterInfo* New() const final {
+    return CreateMaybeMessage<PbChapterInfo>(nullptr);
+  }
+
+  PbChapterInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PbChapterInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const PbChapterInfo& from);
+  void MergeFrom(const PbChapterInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PbChapterInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "pb.PbChapterInfo";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_comic_2eproto);
+    return ::descriptor_table_comic_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+  };
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:pb.PbChapterInfo)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_comic_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PbPageInfo :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:pb.PbPageInfo) */ {
+ public:
+  PbPageInfo();
+  virtual ~PbPageInfo();
+
+  PbPageInfo(const PbPageInfo& from);
+  PbPageInfo(PbPageInfo&& from) noexcept
+    : PbPageInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline PbPageInfo& operator=(const PbPageInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PbPageInfo& operator=(PbPageInfo&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const PbPageInfo& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PbPageInfo* internal_default_instance() {
+    return reinterpret_cast<const PbPageInfo*>(
+               &_PbPageInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(PbPageInfo& a, PbPageInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PbPageInfo* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PbPageInfo* New() const final {
+    return CreateMaybeMessage<PbPageInfo>(nullptr);
+  }
+
+  PbPageInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PbPageInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const PbPageInfo& from);
+  void MergeFrom(const PbPageInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PbPageInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "pb.PbPageInfo";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_comic_2eproto);
+    return ::descriptor_table_comic_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // string data = 1;
+  void clear_data();
+  const std::string& data() const;
+  void set_data(const std::string& value);
+  void set_data(std::string&& value);
+  void set_data(const char* value);
+  void set_data(const char* value, size_t size);
+  std::string* mutable_data();
+  std::string* release_data();
+  void set_allocated_data(std::string* data);
+  private:
+  const std::string& _internal_data() const;
+  void _internal_set_data(const std::string& value);
+  std::string* _internal_mutable_data();
+  public:
+
+  // @@protoc_insertion_point(class_scope:pb.PbPageInfo)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_comic_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PbPageList :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:pb.PbPageList) */ {
+ public:
+  PbPageList();
+  virtual ~PbPageList();
+
+  PbPageList(const PbPageList& from);
+  PbPageList(PbPageList&& from) noexcept
+    : PbPageList() {
+    *this = ::std::move(from);
+  }
+
+  inline PbPageList& operator=(const PbPageList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PbPageList& operator=(PbPageList&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const PbPageList& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PbPageList* internal_default_instance() {
+    return reinterpret_cast<const PbPageList*>(
+               &_PbPageList_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(PbPageList& a, PbPageList& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PbPageList* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PbPageList* New() const final {
+    return CreateMaybeMessage<PbPageList>(nullptr);
+  }
+
+  PbPageList* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PbPageList>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const PbPageList& from);
+  void MergeFrom(const PbPageList& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PbPageList* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "pb.PbPageList";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_comic_2eproto);
+    return ::descriptor_table_comic_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPagesFieldNumber = 1,
+  };
+  // repeated .pb.PbPageInfo pages = 1;
+  int pages_size() const;
+  private:
+  int _internal_pages_size() const;
+  public:
+  void clear_pages();
+  ::pb::PbPageInfo* mutable_pages(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::PbPageInfo >*
+      mutable_pages();
+  private:
+  const ::pb::PbPageInfo& _internal_pages(int index) const;
+  ::pb::PbPageInfo* _internal_add_pages();
+  public:
+  const ::pb::PbPageInfo& pages(int index) const;
+  ::pb::PbPageInfo* add_pages();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::PbPageInfo >&
+      pages() const;
+
+  // @@protoc_insertion_point(class_scope:pb.PbPageList)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::PbPageInfo > pages_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_comic_2eproto;
+};
 // ===================================================================
 
 
@@ -454,9 +1014,231 @@ PbBookList::books() const {
   return books_;
 }
 
+// -------------------------------------------------------------------
+
+// PbChapterList
+
+// repeated .pb.PbChapterInfo chapters = 1;
+inline int PbChapterList::_internal_chapters_size() const {
+  return chapters_.size();
+}
+inline int PbChapterList::chapters_size() const {
+  return _internal_chapters_size();
+}
+inline void PbChapterList::clear_chapters() {
+  chapters_.Clear();
+}
+inline ::pb::PbChapterInfo* PbChapterList::mutable_chapters(int index) {
+  // @@protoc_insertion_point(field_mutable:pb.PbChapterList.chapters)
+  return chapters_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::PbChapterInfo >*
+PbChapterList::mutable_chapters() {
+  // @@protoc_insertion_point(field_mutable_list:pb.PbChapterList.chapters)
+  return &chapters_;
+}
+inline const ::pb::PbChapterInfo& PbChapterList::_internal_chapters(int index) const {
+  return chapters_.Get(index);
+}
+inline const ::pb::PbChapterInfo& PbChapterList::chapters(int index) const {
+  // @@protoc_insertion_point(field_get:pb.PbChapterList.chapters)
+  return _internal_chapters(index);
+}
+inline ::pb::PbChapterInfo* PbChapterList::_internal_add_chapters() {
+  return chapters_.Add();
+}
+inline ::pb::PbChapterInfo* PbChapterList::add_chapters() {
+  // @@protoc_insertion_point(field_add:pb.PbChapterList.chapters)
+  return _internal_add_chapters();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::PbChapterInfo >&
+PbChapterList::chapters() const {
+  // @@protoc_insertion_point(field_list:pb.PbChapterList.chapters)
+  return chapters_;
+}
+
+// -------------------------------------------------------------------
+
+// PbChapterInfo
+
+// string name = 1;
+inline void PbChapterInfo::clear_name() {
+  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& PbChapterInfo::name() const {
+  // @@protoc_insertion_point(field_get:pb.PbChapterInfo.name)
+  return _internal_name();
+}
+inline void PbChapterInfo::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:pb.PbChapterInfo.name)
+}
+inline std::string* PbChapterInfo::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:pb.PbChapterInfo.name)
+  return _internal_mutable_name();
+}
+inline const std::string& PbChapterInfo::_internal_name() const {
+  return name_.GetNoArena();
+}
+inline void PbChapterInfo::_internal_set_name(const std::string& value) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void PbChapterInfo::set_name(std::string&& value) {
+  
+  name_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:pb.PbChapterInfo.name)
+}
+inline void PbChapterInfo::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:pb.PbChapterInfo.name)
+}
+inline void PbChapterInfo::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:pb.PbChapterInfo.name)
+}
+inline std::string* PbChapterInfo::_internal_mutable_name() {
+  
+  return name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* PbChapterInfo::release_name() {
+  // @@protoc_insertion_point(field_release:pb.PbChapterInfo.name)
+  
+  return name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void PbChapterInfo::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:pb.PbChapterInfo.name)
+}
+
+// -------------------------------------------------------------------
+
+// PbPageInfo
+
+// string data = 1;
+inline void PbPageInfo::clear_data() {
+  data_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& PbPageInfo::data() const {
+  // @@protoc_insertion_point(field_get:pb.PbPageInfo.data)
+  return _internal_data();
+}
+inline void PbPageInfo::set_data(const std::string& value) {
+  _internal_set_data(value);
+  // @@protoc_insertion_point(field_set:pb.PbPageInfo.data)
+}
+inline std::string* PbPageInfo::mutable_data() {
+  // @@protoc_insertion_point(field_mutable:pb.PbPageInfo.data)
+  return _internal_mutable_data();
+}
+inline const std::string& PbPageInfo::_internal_data() const {
+  return data_.GetNoArena();
+}
+inline void PbPageInfo::_internal_set_data(const std::string& value) {
+  
+  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void PbPageInfo::set_data(std::string&& value) {
+  
+  data_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:pb.PbPageInfo.data)
+}
+inline void PbPageInfo::set_data(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:pb.PbPageInfo.data)
+}
+inline void PbPageInfo::set_data(const char* value, size_t size) {
+  
+  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:pb.PbPageInfo.data)
+}
+inline std::string* PbPageInfo::_internal_mutable_data() {
+  
+  return data_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* PbPageInfo::release_data() {
+  // @@protoc_insertion_point(field_release:pb.PbPageInfo.data)
+  
+  return data_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void PbPageInfo::set_allocated_data(std::string* data) {
+  if (data != nullptr) {
+    
+  } else {
+    
+  }
+  data_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), data);
+  // @@protoc_insertion_point(field_set_allocated:pb.PbPageInfo.data)
+}
+
+// -------------------------------------------------------------------
+
+// PbPageList
+
+// repeated .pb.PbPageInfo pages = 1;
+inline int PbPageList::_internal_pages_size() const {
+  return pages_.size();
+}
+inline int PbPageList::pages_size() const {
+  return _internal_pages_size();
+}
+inline void PbPageList::clear_pages() {
+  pages_.Clear();
+}
+inline ::pb::PbPageInfo* PbPageList::mutable_pages(int index) {
+  // @@protoc_insertion_point(field_mutable:pb.PbPageList.pages)
+  return pages_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::PbPageInfo >*
+PbPageList::mutable_pages() {
+  // @@protoc_insertion_point(field_mutable_list:pb.PbPageList.pages)
+  return &pages_;
+}
+inline const ::pb::PbPageInfo& PbPageList::_internal_pages(int index) const {
+  return pages_.Get(index);
+}
+inline const ::pb::PbPageInfo& PbPageList::pages(int index) const {
+  // @@protoc_insertion_point(field_get:pb.PbPageList.pages)
+  return _internal_pages(index);
+}
+inline ::pb::PbPageInfo* PbPageList::_internal_add_pages() {
+  return pages_.Add();
+}
+inline ::pb::PbPageInfo* PbPageList::add_pages() {
+  // @@protoc_insertion_point(field_add:pb.PbPageList.pages)
+  return _internal_add_pages();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::PbPageInfo >&
+PbPageList::pages() const {
+  // @@protoc_insertion_point(field_list:pb.PbPageList.pages)
+  return pages_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

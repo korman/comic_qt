@@ -6,12 +6,15 @@
 #include <QJsonParseError>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include "comic.pb.h"
+
+using namespace pb;
 
 ComicBook::ComicBook(QObject *parent):QObject(parent)
 {
     _name = "Unknow";
     _currentChapterIndex = -1;
-    _remoteCallback = nullptr;
+    _id = -1;
 }
 
 ComicBook::~ComicBook()
@@ -125,9 +128,33 @@ void ComicBook::setMaxWidth(int max)
 
 }
 
-void ComicBook::chapterListRequestFinished(QNetworkReply *reply)
+bool ComicBook::processBookListEvent(QByteArray array)
 {
+    PbChapterList list;
 
+    if (!list.ParseFromArray(array.data(),array.size()))
+    {
+        qWarning() << "Parse Error" << endl;
+        return false;
+    }
+
+    for (int i = 0;i < list.chapters_size();i++)
+    {
+        qDebug() << "Name: " << QString::fromStdString(list.chapters(i).name()) << endl;
+
+        shared_ptr<ComicChapter> chapter = shared_ptr<ComicChapter>(new ComicChapter);
+        chapter->setIndex(i);
+        chapter->setChapterName(QString::fromStdString(list.chapters(i).name()));
+
+//        if (!chapter->loadChapter(fullDir.filePath()))
+//        {
+//            continue;
+//        }
+
+        _chapters.push_back(chapter);
+    }
+
+    return true;
 }
 
 bool ComicBook::parseChapter(const QString &path)

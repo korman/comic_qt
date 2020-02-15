@@ -49,5 +49,6 @@ HEADERS += \
     src/ComicChapter.h \
     src/ComicManager.h \
     src/ComicPainter.h \
+    src/MessageDefine.h \
     src/RemoteBookListDelegate.h \
     src/comic.pb.h

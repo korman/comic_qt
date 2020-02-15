@@ -34,7 +34,8 @@ public:
     Q_INVOKABLE ComicChapter* currentChapter();
     Q_INVOKABLE bool nextPage();
     Q_INVOKABLE bool prePage();
-    Q_INVOKABLE void setRemoteCallback(RemoteBookListDelegate* delegate) {_remoteCallback = delegate;}
+
+    bool processBookListEvent(QByteArray array);
 
     shared_ptr<ComicChapter> currentChapterPtr();
     shared_ptr<ComicChapter> nextChapterPtr();
@@ -43,10 +44,7 @@ public:
     void setName(const QString& name) {_name = name;}
     void setPath(const QString& path) {_path = path;}
     void setMaxWidth(int max);
-
-public slots:
-    void chapterListRequestFinished(QNetworkReply* reply);
-
+    void setId(int id) {_id = id;}
 
 protected:
     bool parseChapter(const QString& path);
@@ -54,7 +52,7 @@ protected:
     QString _name;
     QString _path;
     Chapters _chapters;
-    RemoteBookListDelegate* _remoteCallback;
+    int _id;
 
     int _currentChapterIndex;
 

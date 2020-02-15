@@ -32,10 +32,11 @@ public:
     Q_INVOKABLE void setMaxWidth(int max);
     Q_INVOKABLE void setBaseUrl(const QString& url) {_url = url;}
     Q_INVOKABLE int maxWidth() {return _maxWidth;}
-    Q_INVOKABLE void setRemoteCallback(RemoteBookListDelegate* remote) {_remoteCallback = remote;}
+    Q_INVOKABLE void setRemoteBookListCallback(RemoteDelegate* remote) {_remoteBookListCallback = remote;}
+    Q_INVOKABLE void setRemoteChapterListCallback(RemoteDelegate* remote) {_remoteChapterListCallback = remote;}
 
 public slots:
-    void bookListRequestFinished(QNetworkReply* reply);
+    void remoteMessageProcess(QNetworkReply* reply);
 
 protected:
     ComicManager(QObject* parent = nullptr);
@@ -47,12 +48,16 @@ protected:
 
     static shared_ptr<ComicManager> _instance;
 
+    bool processBookList(QByteArray bytes);
+    bool processChapterList(QByteArray bytes);
+
     int _maxWidth;
     QVector<shared_ptr<ComicBook>> _books;
     shared_ptr<QNetworkAccessManager> _networkMgr;
     int _currentOpenBookIndex;
 
-    RemoteBookListDelegate* _remoteCallback;
+    RemoteDelegate* _remoteBookListCallback;
+    RemoteDelegate* _remoteChapterListCallback;
 
     QString _url;
 };
