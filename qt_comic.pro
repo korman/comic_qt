@@ -37,8 +37,6 @@ QML_IMPORT_PATH =
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
 
-LIBS += -L"/usr/local/lib" -lprotobuf
-
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -52,3 +50,11 @@ HEADERS += \
     src/MessageDefine.h \
     src/RemoteBookListDelegate.h \
     src/comic.pb.h
+
+unix|win32: LIBS += -L$$PWD/libs/ -lprotobuf
+
+INCLUDEPATH += $$PWD/libs
+DEPENDPATH += $$PWD/libs
+
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/libs/protobuf.lib
+else:unix|win32-g++: PRE_TARGETDEPS += $$PWD/libs/libprotobuf.a

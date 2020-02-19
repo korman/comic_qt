@@ -88,7 +88,7 @@ ApplicationWindow {
                 Component.onCompleted: {
                     ComicMgr.setRemoteBookListCallback(delegateBooks)
                //     ComicMgr.loadDir("/Users/kakuhiroshi/Downloads/漫画")
-                    ComicMgr.setBaseUrl("http://localhost:8081/")
+                    ComicMgr.setBaseUrl("http://192.168.0.4:8081/")
                     ComicMgr.remoteLoadDir()
 
                     ComicMgr.setMaxWidth(parent.width)
