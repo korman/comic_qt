@@ -20,6 +20,7 @@ public:
 
     bool loadChapter(const QString& path);
     bool openChapter();
+    bool processPageListEvent(QByteArray array);
 
     void setIndex(int index) {_index = index;}
     int index() {return _index;}

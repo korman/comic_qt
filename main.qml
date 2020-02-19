@@ -38,22 +38,22 @@ ApplicationWindow {
         }
     }
 
-//    footer: ToolBar {
-//        id: footerToolbar
-//        contentHeight: toolButton.implicitHeight
+    //    footer: ToolBar {
+    //        id: footerToolbar
+    //        contentHeight: toolButton.implicitHeight
 
-//        ToolButton {
-//            id: bottomButton
-//            text: stackView.depth > 1 ? "\u25C0" : "\u2630"
-//            font.pixelSize: Qt.application.font.pixelSize * 1.6
-//            onClicked: {
-//            }
-//        }
+    //        ToolButton {
+    //            id: bottomButton
+    //            text: stackView.depth > 1 ? "\u25C0" : "\u2630"
+    //            font.pixelSize: Qt.application.font.pixelSize * 1.6
+    //            onClicked: {
+    //            }
+    //        }
 
-//        Component.onCompleted: {
-//            footerToolbar.visible = false
-//        }
-//    }
+    //        Component.onCompleted: {
+    //            footerToolbar.visible = false
+    //        }
+    //    }
 
     StackView {
         id:stackView
@@ -77,12 +77,23 @@ ApplicationWindow {
                     }
                 }
 
+                RemoteDelegate {
+                    id:delegateBooks
+
+                    onRequestMessage: {
+                        listView.model = ComicMgr.bookCount()
+                    }
+                }
+
                 Component.onCompleted: {
-                    ComicMgr.loadDir("/Users/kakuhiroshi/Downloads/漫画")
+                    ComicMgr.setRemoteBookListCallback(delegateBooks)
+               //     ComicMgr.loadDir("/Users/kakuhiroshi/Downloads/漫画")
+                    ComicMgr.setBaseUrl("http://192.168.0.4:8081/")
+                    ComicMgr.remoteLoadDir()
 
                     ComicMgr.setMaxWidth(parent.width)
 
-                    model = ComicMgr.bookCount()
+                    model = 0
                 }
             }
         }

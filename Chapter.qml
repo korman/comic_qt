@@ -24,7 +24,7 @@ Item {
             model: 0
             delegate: ItemDelegate {
                 id:dele
-                text: "aaa"
+                //text: "aaa"
                 width: parent.width
 
                 ComicPainter {
@@ -40,6 +40,7 @@ Item {
                         //                            dele.width = parent.width
                         //                            dele.height = parent.width * scale
 
+                        console.log("Will Load Page")
                         item.loadPage(index)
                         dele.width = item.imageWidth()
                         dele.height = item.imageHeight()
@@ -68,7 +69,16 @@ Item {
                 model = ComicMgr.currentOpenBook().currentChapter().chapterCount()
             }
 
+            RemoteDelegate {
+                id:delegateChapters
+
+                onRequestMessage: {
+                    listView.model = ComicMgr.currentOpenBook().currentChapter().chapterCount()
+                }
+            }
+
             Component.onCompleted: {
+                ComicMgr.setRemotePageListCallback(delegateChapters)
                 model = ComicMgr.currentOpenBook().currentChapter().chapterCount()
                 footerToolbar.visible = true
             }

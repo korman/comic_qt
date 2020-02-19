@@ -20,9 +20,13 @@ SOURCES += \
     src/ComicChapter.cpp \
     src/ComicManager.cpp \
     src/ComicPainter.cpp \
+    src/RemoteBookListDelegate.cpp \
+    src/comic.pb.cc \
     src/main.cpp
 
 RESOURCES += qml.qrc
+
+INCLUDEPATH += /usr/local/include
 
 TRANSLATIONS += \
     qt_comic_zh_CN.ts
@@ -42,4 +46,15 @@ HEADERS += \
     src/ComicBook.h \
     src/ComicChapter.h \
     src/ComicManager.h \
-    src/ComicPainter.h
+    src/ComicPainter.h \
+    src/MessageDefine.h \
+    src/RemoteBookListDelegate.h \
+    src/comic.pb.h
+
+unix|win32: LIBS += -L$$PWD/libs/ -lprotobuf
+
+INCLUDEPATH += $$PWD/libs
+DEPENDPATH += $$PWD/libs
+
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/libs/protobuf.lib
+else:unix|win32-g++: PRE_TARGETDEPS += $$PWD/libs/libprotobuf.a
